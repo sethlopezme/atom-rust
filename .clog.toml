@@ -1,0 +1,5 @@
+[clog]
+repository = "https://github.com/sethlopezme/languageserver-rust"
+link-style = "github"
+changelog = "CHANGELOG.md"
+output-format = "markdown"
