@@ -1,0 +1,27 @@
+{
+  "name": "atom-rust",
+  "main": "./lib/atom-rust",
+  "version": "0.0.1",
+  "description": "Provide Rust language support via the Rust Language Server",
+  "keywords": [
+    "rust",
+    "language",
+    "server",
+    "languageserver"
+  ],
+  "repository": "https://github.com/sethlopezme/atom-rust",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "atom-languageclient": "git://github.com/atom/atom-languageclient.git"
+  },
+  "consumedServices": {
+    "status-bar": {
+      "versions": {
+        "^1.0.0": "consumeStatusBar"
+      }
+    }
+  }
+}
