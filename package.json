@@ -6,8 +6,7 @@
   "keywords": [
     "rust",
     "language",
-    "server",
-    "languageserver"
+    "server"
   ],
   "repository": "https://github.com/sethlopezme/atom-rust",
   "license": "MIT",
@@ -22,6 +21,20 @@
       "versions": {
         "^1.0.0": "consumeStatusBar"
       }
+    }
+  },
+  "configSchema": {
+    "command": {
+      "title": "RLS Command",
+      "description": "Command to start the Rust Language Server.",
+      "type": "string",
+      "default": "rustup run nightly rls"
+    },
+    "dev": {
+      "title": "RLS Development Mode",
+      "description": "Build and run RLS via Cargo. Requires the `RLS_ROOT` environment variable. Overrides \"RLS Command\" setting.",
+      "type": "boolean",
+      "default": false
     }
   }
 }
