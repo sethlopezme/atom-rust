@@ -16,11 +16,11 @@ suggestions and contributors!
 ## Features
 
 - [ ] Offer to install recommended dependencies
-- [ ] Install RLS
+- [ ] Offer to install RLS
 - [x] Start RLS automatically
 - [x] Provide linting support (via [linter])
 - [x] Provide go-to-definition support (via [hyperclick])
-- [ ] Provide links to documentation?
+- [ ] More to come...
 
 [linter]: https://atom.io/packages/linter
 [hyperclick]: https://atom.io/packages/hyperclick
