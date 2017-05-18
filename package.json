@@ -1,8 +1,8 @@
 {
   "name": "atom-rust",
   "main": "./lib/atom-rust",
-  "version": "0.0.1",
-  "description": "Provide Rust language support via the Rust Language Server",
+  "version": "0.0.0",
+  "description": "Provide Rust language support in Atom.",
   "keywords": [
     "rust",
     "language",
