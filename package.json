@@ -1,7 +1,7 @@
 {
   "name": "atom-rust",
   "main": "./lib/atom-rust",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Provide Rust language support in Atom.",
   "keywords": [
     "rust",
