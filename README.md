@@ -10,5 +10,17 @@ suggestions and contributors!
 
 - [Install the Rust Language Server](https://github.com/rust-lang-nursery/rls#setup)
 - Install the following Atom packages:
-  - [linter](https://atom.io/packages/linter)
-  - [hyperclick](https://atom.io/packages/hyperclick)
+  - [linter]
+  - [hyperclick]
+
+## Features
+
+- [ ] Offer to install recommended dependencies
+- [ ] Install RLS
+- [x] Start RLS automatically
+- [x] Provide linting support (via [linter])
+- [x] Provide go-to-definition support (via [hyperclick])
+- [ ] Provide links to documentation?
+
+[linter]: https://atom.io/packages/linter
+[hyperclick]: https://atom.io/packages/hyperclick
