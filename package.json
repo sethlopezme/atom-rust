@@ -11,15 +11,32 @@
   "repository": "https://github.com/sethlopezme/atom-rust",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.0.0 <2.0.0"
+    "atom": ">=1.17.0 <2.0.0"
   },
   "dependencies": {
     "atom-languageclient": "git://github.com/atom/atom-languageclient.git"
   },
   "consumedServices": {
+    "linter-indie": {
+      "versions": {
+        "2.0.0": "consumeLinterV2"
+      }
+    },
     "status-bar": {
       "versions": {
         "^1.0.0": "consumeStatusBar"
+      }
+    }
+  },
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "provideAutocomplete"
+      }
+    },
+    "hyperclick.provider": {
+      "versions": {
+        "0.0.0": "provideHyperclick"
       }
     }
   },
@@ -30,9 +47,9 @@
       "type": "string",
       "default": "rustup run nightly rls"
     },
-    "dev": {
-      "title": "RLS Development Mode",
-      "description": "Build and run RLS via Cargo. Requires the `RLS_ROOT` environment variable. Overrides \"RLS Command\" setting.",
+    "useRlsRoot": {
+      "title": "Use RLS_ROOT",
+      "description": "Use the value of the `RLS_ROOT` environment variable as the current working directory when starting RLS.",
       "type": "boolean",
       "default": false
     }
