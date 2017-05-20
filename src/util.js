@@ -1,13 +1,25 @@
-const which = require('which');
+import Which from 'which';
 
+/**
+ * Retrieve the path of an executable.
+ *
+ * @param   {string}  executable  The name of the executable.
+ * @return  {Promise<string>}     The path of the executable.
+ */
 export async function getExecutablePath(executable) {
   return new Promise((resolve, reject) => {
-    which(executable, (error, path) => (error ? reject(error) : resolve(path)));
+    Which(executable, (error, path) => (error ? reject(error) : resolve(path)));
   });
 }
 
-export async function isExecutableInPath(executable) {
+/**
+ * Test whether an executable is available to be called.
+ *
+ * @param   {string}   executable  The name of the executable.
+ * @return  {Promise<boolean>}     Whether or not the executable is available.
+ */
+export async function isExecutableAvailable(executable) {
   return new Promise(resolve => {
-    which(executable, error => resolve(!error));
+    Which(executable, error => resolve(!error));
   });
 }
