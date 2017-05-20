@@ -42,6 +42,24 @@ export default class StatusView {
    * @param  {string}  customMessage  A custom message displayed in the tooltip.
    */
   setState(state, customMessage) {
+    switch (state) {
+      case State.ANALYZING:
+        Logger.debug('state = ANALYZING', customMessage);
+        break;
+      case State.ERROR:
+        Logger.debug('state = ERROR', customMessage);
+        break;
+      case State.PENDING:
+        Logger.debug('state = PENDING', customMessage);
+        break;
+      case State.READY:
+        Logger.debug('state = READY', customMessage);
+        break;
+      default:
+        Logger.error('state = ?', customMessage);
+        break;
+    }
+
     this._updateIcon(state);
     this._updateTooltip(state, customMessage);
     this._updateVisibility(state);

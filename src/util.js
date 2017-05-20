@@ -23,3 +23,8 @@ export async function isExecutableAvailable(executable) {
     Which(executable, error => resolve(!error));
   });
 }
+
+export default {
+  getExecutablePath,
+  isExecutableAvailable,
+};
