@@ -3,6 +3,10 @@
   "main": "./dist/atom-rust",
   "version": "0.1.1",
   "description": "Provide Rust language support in Atom.",
+  "author": {
+    "name": "Seth Lopez",
+    "url": "https://sethlopez.me"
+  },
   "keywords": [
     "rust",
     "language",
