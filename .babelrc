@@ -1,11 +1,9 @@
 {
   "presets": [
-    ["flow"],
     ["env", {
       "targets": {
         "electron": 1.3
-      },
-      "debug": true
+      }
     }]
   ]
 }
