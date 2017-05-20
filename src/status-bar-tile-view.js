@@ -1,3 +1,4 @@
+// @flow
 const State = require('./state');
 
 module.exports = class StatusBarTileView {

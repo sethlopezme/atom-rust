@@ -1,10 +1,10 @@
-const childProcess = require('child_process');
+// @flow
+import { AutoLanguageClient } from 'atom-languageclient';
 
-const { AutoLanguageClient } = require('atom-languageclient');
-
-const pkg = require('../package.json');
+const Rust = require('./rust');
 const State = require('./state');
 const StatusBarTileView = require('./status-bar-tile-view');
+const pkg = require('../package.json');
 
 class AtomRustPlugin extends AutoLanguageClient {
   constructor() {
@@ -40,17 +40,9 @@ class AtomRustPlugin extends AutoLanguageClient {
   }
 
   startServerProcess() {
-    const commandArgs = atom.config.get('atom-rust.command').split(' ');
-    const useRlsRoot = atom.config.get('atom-rust.useRlsRoot');
-    const commandConfig = {};
-    // const rlsRoot = process.env.RLS_ROOT;
-
-    if (useRlsRoot) {
-      this.logger.debug('useRlsRoot');
-      commandConfig.cwd = process.env.RLS_ROOT;
-    }
-
-    return childProcess.spawn(commandArgs.shift(), commandArgs);
+    const rls = Rust.spawnRls();
+    rls.on('error', error => this.onServerStartError(error));
+    return rls;
   }
 
   preInitialization(connection) {
@@ -76,6 +68,14 @@ class AtomRustPlugin extends AutoLanguageClient {
   setState(state) {
     this.state = state;
     this.statusView.setState(state);
+  }
+
+  onServerStartError(error) {
+    console.error(error);
+    this.setState(State.ERROR);
+    atom.notifications.addFatalError('Could not spawn RLS process', {
+      description: error.message,
+    });
   }
 }
 
