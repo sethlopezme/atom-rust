@@ -1,21 +1,10 @@
+import Logger from './logger';
+import State from './state';
+
 /**
- * Creates and controls the DOM element for a status bar tile.
+ * Create and control a DOM element for a status bar tile.
  */
 export default class StatusView {
-  /**
-   * Static symbols representing each state of the StatusView.
-   *
-   * @type  {Object}
-   */
-  static get State() {
-    return {
-      ANALYZING: Symbol(),
-      ERROR: Symbol(),
-      PENDING: Symbol(),
-      READY: Symbol(),
-    };
-  }
-
   /**
    * Create an instance of StatusView and initialize its state.
    */
@@ -32,7 +21,7 @@ export default class StatusView {
     this.element.appendChild(document.createTextNode(' '));
     this.element.appendChild(this.icon);
 
-    this.setState(StatusView.State.PENDING);
+    this.setState(State.PENDING);
   }
 
   /**
@@ -49,7 +38,7 @@ export default class StatusView {
   /**
    * Update the view to display the given state.
    *
-   * @param  {Symbol}  state          The new state..
+   * @param  {Symbol}  state          The new state.
    * @param  {string}  customMessage  A custom message displayed in the tooltip.
    */
   setState(state, customMessage) {
@@ -74,16 +63,16 @@ export default class StatusView {
     );
 
     switch (state) {
-      case StatusView.State.ANALYZING:
+      case State.ANALYZING:
         this.icon.classList.add('icon-repo-sync', 'text-warning');
         break;
-      case StatusView.State.READY:
+      case State.READY:
         this.icon.classList.add('icon-check', 'text-success');
         break;
-      case StatusView.State.ERROR:
+      case State.ERROR:
         this.icon.classList.add('icon-x', 'text-error');
         break;
-      case StatusView.State.PENDING:
+      case State.PENDING:
       default:
         break;
     }
@@ -112,16 +101,16 @@ export default class StatusView {
 
         // set a default message based on the state
         switch (state) {
-          case StatusView.State.ANALYZING:
+          case State.ANALYZING:
             title += 'analyzing';
             break;
-          case StatusView.State.READY:
+          case State.READY:
             title += 'ready';
             break;
-          case StatusView.State.ERROR:
+          case State.ERROR:
             title += 'error';
             break;
-          case StatusView.State.PENDING:
+          case State.PENDING:
           default:
             title = title.slice(0, 3);
             break;
@@ -140,12 +129,12 @@ export default class StatusView {
    */
   _updateVisibility(state) {
     switch (state) {
-      case StatusView.State.ANALYZING:
-      case StatusView.State.READY:
-      case StatusView.State.ERROR:
+      case State.ANALYZING:
+      case State.READY:
+      case State.ERROR:
         this.element.style.display = '';
         break;
-      case StatusView.State.PENDING:
+      case State.PENDING:
       default:
         this.element.style.display = 'none';
         break;
