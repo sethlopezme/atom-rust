@@ -1,4 +1,3 @@
-// @flow
 const which = require('which');
 
 export async function getExecutablePath(executable) {

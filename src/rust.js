@@ -1,4 +1,3 @@
-// @flow
 const childProcess = require('child_process');
 
 const util = require('./util');
@@ -19,7 +18,7 @@ function isManagedByRustup(rustcSysRoot) {
 
 function getRustcSysRoot() {
   return new Promise((resolve, reject) => {
-    childProcess.exec('rustc', ['--print', 'sysroot'], (error, stdout) => {
+    childProcess.exec('rustc --print sysroot', (error, stdout) => {
       if (error) {
         console.error(error);
         return reject(error);

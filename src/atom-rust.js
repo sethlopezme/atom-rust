@@ -1,4 +1,3 @@
-// @flow
 import { AutoLanguageClient } from 'atom-languageclient';
 
 const Rust = require('./rust');

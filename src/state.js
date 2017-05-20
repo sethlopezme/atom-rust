@@ -1,4 +1,3 @@
-// @flow
 module.exports = {
   ANALYZING: Symbol('Analyzing State'),
   ERROR: Symbol('Error State'),
