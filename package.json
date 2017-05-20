@@ -9,8 +9,10 @@
   },
   "keywords": [
     "rust",
+    "rustlang",
     "language",
-    "server"
+    "server",
+    "languageserver"
   ],
   "repository": {
     "type": "git",
