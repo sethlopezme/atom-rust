@@ -12,7 +12,7 @@ class AtomRustPlugin extends AutoLanguageClient {
   }
 
   activate() {
-    this.setState(StatusBarTileView.State.PENDING);
+    this.statusView.setState(StatusBarTileView.State.PENDING);
     super.activate();
   }
 
@@ -45,10 +45,10 @@ class AtomRustPlugin extends AutoLanguageClient {
 
   preInitialization(connection) {
     connection.onCustom('rustDocument/diagnosticsBegin', () => {
-      this.setState(StatusBarTileView.State.ANALYZING);
+      this.statusView.setState(StatusBarTileView.State.ANALYZING);
     });
     connection.onCustom('rustDocument/diagnosticsEnd', () => {
-      this.setState(StatusBarTileView.State.READY);
+      this.statusView.setState(StatusBarTileView.State.READY);
     });
   }
 
@@ -63,14 +63,9 @@ class AtomRustPlugin extends AutoLanguageClient {
     });
   }
 
-  setState(state) {
-    this.state = state;
-    this.statusView.setState(state);
-  }
-
   onServerStartError(error) {
     console.error(error);
-    this.setState(StatusBarTileView.State.ERROR);
+    this.statusView.setState(StatusBarTileView.State.ERROR);
     atom.notifications.addFatalError('Could not spawn RLS process', {
       description: error.message,
     });
