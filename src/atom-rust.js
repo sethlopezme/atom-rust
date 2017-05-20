@@ -1,18 +1,19 @@
 import { AutoLanguageClient } from 'atom-languageclient';
 
 const Rust = require('./rust');
-const StatusBarTileView = require('./status-bar-tile-view');
+
+import StatusView from './status-view';
 const pkg = require('../package.json');
 
 class AtomRustPlugin extends AutoLanguageClient {
   constructor() {
     super();
     this.config = pkg.configSchema;
-    this.statusView = new StatusBarTileView();
+    this.statusView = new StatusView();
   }
 
   activate() {
-    this.statusView.setState(StatusBarTileView.State.PENDING);
+    this.statusView.setState(StatusView.State.PENDING);
     super.activate();
   }
 
@@ -45,10 +46,10 @@ class AtomRustPlugin extends AutoLanguageClient {
 
   preInitialization(connection) {
     connection.onCustom('rustDocument/diagnosticsBegin', () => {
-      this.statusView.setState(StatusBarTileView.State.ANALYZING);
+      this.statusView.setState(StatusView.State.ANALYZING);
     });
     connection.onCustom('rustDocument/diagnosticsEnd', () => {
-      this.statusView.setState(StatusBarTileView.State.READY);
+      this.statusView.setState(StatusView.State.READY);
     });
   }
 
@@ -65,7 +66,7 @@ class AtomRustPlugin extends AutoLanguageClient {
 
   onServerStartError(error) {
     console.error(error);
-    this.statusView.setState(StatusBarTileView.State.ERROR);
+    this.statusView.setState(StatusView.State.ERROR);
     atom.notifications.addFatalError('Could not spawn RLS process', {
       description: error.message,
     });

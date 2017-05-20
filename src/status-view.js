@@ -1,7 +1,12 @@
 /**
- * Creates and controls the DOM element for the status bar tile.
+ * Creates and controls the DOM element for a status bar tile.
  */
-export default class StatusBarTileView {
+export default class StatusView {
+  /**
+   * Static symbols representing each state of the StatusView.
+   *
+   * @type  {Object}
+   */
   static get State() {
     return {
       ANALYZING: Symbol(),
@@ -11,6 +16,9 @@ export default class StatusBarTileView {
     };
   }
 
+  /**
+   * Create an instance of StatusView and initialize its state.
+   */
   constructor() {
     this.title = document.createElement('span');
     this.title.textContent = 'RLS';
@@ -24,7 +32,7 @@ export default class StatusBarTileView {
     this.element.appendChild(document.createTextNode(' '));
     this.element.appendChild(this.icon);
 
-    this.setState(StatusBarTileView.State.PENDING);
+    this.setState(StatusView.State.PENDING);
   }
 
   /**
@@ -42,7 +50,7 @@ export default class StatusBarTileView {
    * Update the view to display the given state.
    *
    * @param  {Symbol}  state          The new state..
-   * @param  {String}  customMessage  A custom message displayed in the tooltip.
+   * @param  {string}  customMessage  A custom message displayed in the tooltip.
    */
   setState(state, customMessage) {
     this._updateIcon(state);
@@ -66,16 +74,16 @@ export default class StatusBarTileView {
     );
 
     switch (state) {
-      case StatusBarTileView.State.ANALYZING:
+      case StatusView.State.ANALYZING:
         this.icon.classList.add('icon-repo-sync', 'text-warning');
         break;
-      case StatusBarTileView.State.READY:
+      case StatusView.State.READY:
         this.icon.classList.add('icon-check', 'text-success');
         break;
-      case StatusBarTileView.State.ERROR:
+      case StatusView.State.ERROR:
         this.icon.classList.add('icon-x', 'text-error');
         break;
-      case StatusBarTileView.State.PENDING:
+      case StatusView.State.PENDING:
       default:
         break;
     }
@@ -86,7 +94,7 @@ export default class StatusBarTileView {
    * custom message.
    *
    * @param    {Symbol}  state          The new state.
-   * @param    {String}  customMessage  An optional custom message.
+   * @param    {string}  customMessage  An optional custom message.
    */
   _updateTooltip(state, customMessage) {
     if (this.tooltip) {
@@ -104,16 +112,16 @@ export default class StatusBarTileView {
 
         // set a default message based on the state
         switch (state) {
-          case StatusBarTileView.State.ANALYZING:
+          case StatusView.State.ANALYZING:
             title += 'analyzing';
             break;
-          case StatusBarTileView.State.READY:
+          case StatusView.State.READY:
             title += 'ready';
             break;
-          case StatusBarTileView.State.ERROR:
+          case StatusView.State.ERROR:
             title += 'error';
             break;
-          case StatusBarTileView.State.PENDING:
+          case StatusView.State.PENDING:
           default:
             title = title.slice(0, 3);
             break;
@@ -127,17 +135,17 @@ export default class StatusBarTileView {
   /**
    * Show or hide the view depending on the given state by applying or removing
    * an inline `display: none` style.
-   * 
+   *
    * @param    {Symbol}  state  The new state.
    */
   _updateVisibility(state) {
     switch (state) {
-      case StatusBarTileView.State.ANALYZING:
-      case StatusBarTileView.State.READY:
-      case StatusBarTileView.State.ERROR:
+      case StatusView.State.ANALYZING:
+      case StatusView.State.READY:
+      case StatusView.State.ERROR:
         this.element.style.display = '';
         break;
-      case StatusBarTileView.State.PENDING:
+      case StatusView.State.PENDING:
       default:
         this.element.style.display = 'none';
         break;
