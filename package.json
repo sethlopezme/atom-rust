@@ -33,12 +33,21 @@
   },
   "configSchema": {
     "command": {
+      "order": 2,
       "title": "RLS Command",
       "description": "Command to start the Rust Language Server.",
       "type": "string",
       "default": "rustup run nightly rls"
     },
+    "debug": {
+      "order": 3,
+      "title": "Debug",
+      "description": "Log debug messages to the console.",
+      "type": "boolean",
+      "default": false
+    },
     "useRlsRoot": {
+      "order": 1,
       "title": "Use RLS_ROOT",
       "description": "Use the value of the `RLS_ROOT` environment variable as the current working directory when starting RLS.",
       "type": "boolean",
