@@ -1,6 +1,7 @@
 import { AutoLanguageClient } from 'atom-languageclient';
 
 import Logger from './logger';
+import Notifier from './notifier';
 import Rust from './rust';
 import State from './state';
 import StatusView from './status-view';
@@ -43,7 +44,7 @@ class AtomRustPlugin extends AutoLanguageClient {
 
   startServerProcess() {
     const rls = Rust.spawnRls();
-    rls.on('error', error => this.onServerStartError(error));
+    rls.on('error', error => this.onStartServerProcessError(error));
     return rls;
   }
 
@@ -67,11 +68,9 @@ class AtomRustPlugin extends AutoLanguageClient {
     });
   }
 
-  onServerStartError(error) {
+  onStartServerProcessError(error) {
     this.statusView.setState(State.ERROR);
-    atom.notifications.addFatalError('Could not spawn RLS process', {
-      description: error.message,
-    });
+    Notifier.error('Could not spawn RLS process', error);
   }
 }
 
