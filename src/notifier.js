@@ -1,5 +1,6 @@
 const defaults = {
   dismissable: true,
+  packageName: 'atom-rust',
 };
 
 function error(title, options = {}) {
@@ -14,7 +15,7 @@ function error(title, options = {}) {
     config = Object.assign({}, defaults, options);
   }
 
-  atom.notifications.addError(title, config);
+  atom.notifications.addFatalError(title, config);
 }
 
 function info(title, options = {}) {
