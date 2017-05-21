@@ -21,7 +21,7 @@ function error(title, options = {}) {
     config = Object.assign({}, defaults, options);
   }
 
-  atom.notifications.addFatalError(title, config);
+  return atom.notifications.addFatalError(title, config);
 }
 
 /**
@@ -32,7 +32,7 @@ function error(title, options = {}) {
  */
 function info(title, options = {}) {
   let config = Object.assign({}, defaults, options);
-  atom.notifications.addInfo(title, config);
+  return atom.notifications.addInfo(title, config);
 }
 
 /**
@@ -43,7 +43,7 @@ function info(title, options = {}) {
  */
 function success(title, options = {}) {
   let config = Object.assign({}, defaults, options);
-  atom.notifications.addSuccess(title, config);
+  return atom.notifications.addSuccess(title, config);
 }
 
 /**
@@ -54,7 +54,7 @@ function success(title, options = {}) {
  */
 function warning(title, options = {}) {
   let config = Object.assign({}, defaults, options);
-  atom.notifications.addWarning(title, config);
+  return atom.notifications.addWarning(title, config);
 }
 
 export default {
